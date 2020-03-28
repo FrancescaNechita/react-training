@@ -1,0 +1,40 @@
+.receipe-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 200px;
+  margin: 40px;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 22px rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.receipe-tile img {
+  width: 100px;
+  height: 100px;
+}
+
+.receipe-tile .icon-wrapper{
+  width: 100%;
+}
+
+.receipe-tile img.icon-class{
+  float: right;
+  height: 16px;
+  width: auto;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.receipe-tile p {
+  font-size: 16px;
+  color: #454545;
+  font-weight: 200;
+  margin-top: 20px;
+  margin-bottom: 0;
+  line-height: 30px;
+}
