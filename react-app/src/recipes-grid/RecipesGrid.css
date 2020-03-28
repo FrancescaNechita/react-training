@@ -1,0 +1,10 @@
+.recipes-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 30px 150px;
+}
