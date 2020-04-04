@@ -1,0 +1,37 @@
+.app-logo {
+  height: 30px;
+  pointer-events: none;
+}
+
+.app-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  font-size: 20px;
+  color: white;
+  background-color: #282c34;
+}
+
+.app-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+  color: white;
+  background-color: #949494;
+}
+
+.app-menu-item {
+  border-right: white solid 1px;
+  width: 20%;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.app-menu-item:hover {
+  background-color: #787878;
+}

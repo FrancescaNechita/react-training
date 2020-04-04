@@ -1,0 +1,19 @@
+.basic-input {
+  width: 80%;
+  height: 40px;
+  -webkit-appearance: none;
+  background-color: #E9E9E9;
+  border: 1px solid #E0DEDE;
+  border-radius: 6px;
+  padding-left: 20px;
+  outline: none;
+}
+
+.basic-input:focus {
+  border-color: #0093D2;
+  background-color: #C5EEFF;
+}
+
+.basic-input::-ms-clear {
+  display: none;
+}

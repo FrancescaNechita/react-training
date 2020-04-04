@@ -1,0 +1,12 @@
+.cocktails-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+  color: #787878;
+  margin: 30px 150px;
+}
