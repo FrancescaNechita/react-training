@@ -1,0 +1,29 @@
+.basic-cocktail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.basic-cocktail-container img {
+  max-height: 50vh;
+  min-height: 250px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 22px rgba(0, 0, 0, 0.07);
+}
+
+.basic-cocktail-container p {
+  margin-bottom: 5vh;
+  color: #787878;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.basic-cocktail-container .button-wrapper{
+  width: 80%;
+}
+
+.basic-cocktail-container .basic-button {
+  margin-top: 5vh;
+  float: left;
+}
