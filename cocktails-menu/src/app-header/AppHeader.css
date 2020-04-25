@@ -3,6 +3,10 @@
   pointer-events: none;
 }
 
+.app-title {
+  cursor: pointer;
+}
+
 .app-header {
   display: flex;
   flex-direction: row;
@@ -14,6 +18,12 @@
   background-color: #282c34;
 }
 
+.app-header a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .app-menu {
   display: flex;
   flex-direction: row;
@@ -21,7 +31,7 @@
   justify-content: flex-start;
   font-size: 20px;
   color: white;
-  background-color: #949494;
+  background-color:lightsteelblue;
 }
 
 .app-menu-item {
@@ -33,5 +43,16 @@
 }
 
 .app-menu-item:hover {
-  background-color: #787878;
+  background-color: lightblue;
 }
+
+a {
+  text-transform: capitalize;
+  text-decoration: none;
+  color: white;
+}
+
+.app-menu-item.active {
+  background-color:lightblue;
+}
+

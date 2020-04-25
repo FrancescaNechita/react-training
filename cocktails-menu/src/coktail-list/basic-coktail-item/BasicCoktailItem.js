@@ -1,15 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './BasicCocktailItem.css';
 
-export class BasicCocktailItem extends React.Component {
-  selectItem = () => {
-    this.props.selectItem(this.props.cocktail);
-  }
-
-  render() {
-    return <div className="cocktail-tile" >
-      <img src={this.props.cocktail.strDrinkThumb} alt="Cocktail" onClick={this.selectItem} />
-      <p>{this.props.cocktail.strDrink}</p>
-    </div>;
-  }
+export const BasicCocktailItem = (props) => {
+  return <div className="cocktail-tile" >
+    <img src={props.cocktail.strDrinkThumb} alt="Cocktail" />
+    <Link to={`/${props.routePath}/${props.cocktail.idDrink}`}>
+      <p>{props.cocktail.strDrink}</p>
+    </Link>
+  </div>;
 }

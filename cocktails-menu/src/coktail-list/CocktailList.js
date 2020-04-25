@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom'; //BrowserRouter, Route, Switch,
 import axios from 'axios';
 
 import { BasicCocktailItem } from './basic-coktail-item/BasicCoktailItem';
 import './CocktailList.css';
+// import BasicCocktail from './basic-cocktail/BasicCoktail';
 
-export class CocktailList extends Component {
+class CocktailList extends Component {
   constructor(props) {
     super(props);
 
@@ -26,10 +28,11 @@ export class CocktailList extends Component {
 
   render() {
     const cocktails = this.state.cocktails.map(cocktail =>
-      <BasicCocktailItem cocktail={cocktail} key={cocktail.idDrink} selectItem={this.selectItem}></BasicCocktailItem>);
+      <BasicCocktailItem cocktail={cocktail} routePath={this.props.routePath}
+        key={cocktail.idDrink} selectItem={this.selectItem}></BasicCocktailItem>);
 
     return (
-      <section>
+      <Fragment>
         <h1>{this.props.name}</h1>
         <hr />
         <div className="cocktails-grid">
@@ -37,7 +40,14 @@ export class CocktailList extends Component {
             cocktails
           }
         </div>
-      </section>
+        {/* <BrowserRouter>
+          <Switch>
+            <Route path={`/:cocktailId`} component={BasicCocktail} />
+          </Switch>
+        </BrowserRouter> */}
+      </Fragment>
     );
   }
 }
+
+export default withRouter(CocktailList);
