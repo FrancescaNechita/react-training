@@ -1,53 +1,34 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import '../../assets/Buttons.css';
 import './BasicCocktail.css';
 
-const findByIdBaseUrl = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
+export function BasicCocktail(props) {
+  const findByIdBaseUrl = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
+  const [cocktail, setCocktail] = useState(null);
 
-export class BasicCocktail extends React.Component {
-  constructor(props) {
-    super(props);
+  useEffect(() => {
+      axios.get(`${findByIdBaseUrl}${props.match.params.cocktailId}`)
+        .then(response => {
+          var cocktails = response.data.drinks;
+          setCocktail(cocktails.length > 0 ? cocktails[0] : null);
+        });
+  }, [props.match.params.cocktailId]);
 
-    this.state = {
-      cocktail: null
-    };
+  if (!cocktail) {
+    return <div>Loading...</div>
   }
-
-  componentDidMount() {
-    axios.get(`${findByIdBaseUrl}${this.props.match.params.cocktailId}`)
-      .then(response => {
-        console.log('request', response);
-        var cocktails = response.data.drinks;
-        this.setState({ cocktail: cocktails.length > 0 ? cocktails[0] : null });
-      });
-  }
-
-  goBack = () => {
-    this.props.goToMainMenu();
-  }
-
-  openCocktailDetails = () => {
-    this.props.openCocktailDetails();
-  }
-
-  render() {
-    console.log('myCocktailDetails', this.state.cocktail);
-    if (!this.state.cocktail) {
-      return <div>Loading...</div>
-    }
-    return <div className="basic-cocktail-container" >
-      <p onClick={this.openCocktailDetails}>{this.state.cocktail.strDrink}</p>
-      <img src={this.state.cocktail.strDrinkThumb} alt="Cocktail" />
-      <div className="button-wrapper">
-        <Link to="/" >
-          <button className="basic-button" > Back</button>
-        </Link>
-      </div>
+  return <div className="basic-cocktail-container" >
+    <p>{cocktail.strDrink}</p>
+    <img src={cocktail.strDrinkThumb} alt="Cocktail" />
+    <div className="button-wrapper">
+      <Link to="/" >
+        <button className="basic-button" > Back</button>
+      </Link>
     </div>
-  }
+  </div>
 }
 
-export default withRouter(BasicCocktail);
+export default BasicCocktail;

@@ -1,70 +1,61 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import logo from '../logo.svg';
 
 import './AppHeader.css'
 
-export class AppHeader extends Component {
-  unlistenHistory;
+export function AppHeader(props) {
 
-  constructor(props) {
-    super(props);
-
+  const intializeSelectedCategories = () => {
     let tempState = {};
-    this.props.menuItemNames.forEach(element => {
+    props.menuItemNames.forEach(element => {
       tempState[element] = false;
     });
 
-    this.state = tempState;
+    return tempState
   }
 
-  componentDidMount() {
-    this.unlistenHistory = this.props.history.listen((location, action) => {
-      console.log('changeLocation', location);
+  const [selectedCategory, setSelectedCategory] = useState(intializeSelectedCategories());
 
-      this.props.menuItemNames.filter(i => location.pathname.indexOf(i) < 0)
-        .forEach(i => {
-          console.log(i);
-          this.setState({ [i]: false });
-        })
-    })
-  }
-
-  componentWillUnmount() {
-    this.unlistenHistory();
-  }
-
-  selectMenuItem($event, menuItemName) {
-    this.setState(prevState => ({
-      [menuItemName]: !prevState[menuItemName]
-    }));
-
-    this.props.menuItemNames.filter(i => i !== menuItemName)
-      .forEach(i => {
-        this.setState({ [i]: false });
-      })
-  }
-
-  render() {
-    console.log(this.props);
-    const menuItems = this.props.menuItemNames.map(name => {
-      let cssClasses = `app-menu-item ${this.state[name] ? "active" : ""}`
-      return <Link to={`/${name}`} key={`menuItem${name}`} className={cssClasses}
-        onClick={(e) => this.selectMenuItem(e, name)}>{name}</Link>
+  useEffect(() => {
+    let unlistenHistory = props.history.listen((location, action) => {
+      let tempState = {};
+      props.menuItemNames.forEach(i => tempState[i] = location.pathname.indexOf(`/${i}`) >= 0);
+      setSelectedCategory(tempState);
     });
 
-    return <Fragment>
-      <header className="app-header">
-        <Link to="/">
-          <img src={logo} className="app-logo" alt="logo" />
-          <label className="app-title">Cocktails</label>
-        </Link>
-      </header>
-      <div className="app-menu">
-        {menuItems}
-      </div>
-    </Fragment>
+    return () => {
+      unlistenHistory();
+    }
+  });
+
+  const selectMenuItem = ($event, menuItemName) => {
+    let tempState = {};
+    props.menuItemNames.forEach(i => {
+      tempState[i] = false;
+    });
+    tempState[menuItemName] = true;
+
+    setSelectedCategory(tempState);
   }
+
+  const menuItems = props.menuItemNames.map(name => {
+    let cssClasses = `app-menu-item ${selectedCategory[name] ? "active" : ""}`
+    return <Link to={`/${name}`} key={`menuItem${name}`} className={cssClasses}
+      onClick={(e) => selectMenuItem(e, name)}>{name}</Link>
+  });
+
+  return <Fragment>
+    <header className="app-header">
+      <Link to="/">
+        <img src={logo} className="app-logo" alt="logo" />
+        <label className="app-title">Cocktails</label>
+      </Link>
+    </header>
+    <div className="app-menu">
+      {menuItems}
+    </div>
+  </Fragment>
 }
 
 export default withRouter(AppHeader);

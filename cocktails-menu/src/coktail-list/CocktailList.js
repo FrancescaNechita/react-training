@@ -1,53 +1,35 @@
-import React, { Component, Fragment } from 'react';
-import { withRouter } from 'react-router-dom'; //BrowserRouter, Route, Switch,
+import React, { useState, useEffect, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import { BasicCocktailItem } from './basic-coktail-item/BasicCoktailItem';
 import './CocktailList.css';
-// import BasicCocktail from './basic-cocktail/BasicCoktail';
 
-class CocktailList extends Component {
-  constructor(props) {
-    super(props);
+function CocktailList(props) {
+  const [cocktails, setCocktails] = useState([]);
 
-    this.state = {
-      cocktails: []
-    };
-  }
-
-  componentDidMount() {
-    axios.get(this.props.url)
+  useEffect(() => {
+    axios.get(props.url)
       .then(response => {
-        this.setState({ cocktails: response.data.drinks });
+        setCocktails(response.data.drinks);
       });
-  }
+  }, [props.url]);
 
-  selectItem = (coktailItem) => {
-    this.props.selectItem(coktailItem);
-  }
+  const htmlCocktails = cocktails.map(cocktail =>
+    <BasicCocktailItem cocktail={cocktail} routePath={props.routePath}
+      key={cocktail.idDrink} ></BasicCocktailItem>);
 
-  render() {
-    const cocktails = this.state.cocktails.map(cocktail =>
-      <BasicCocktailItem cocktail={cocktail} routePath={this.props.routePath}
-        key={cocktail.idDrink} selectItem={this.selectItem}></BasicCocktailItem>);
-
-    return (
-      <Fragment>
-        <h1>{this.props.name}</h1>
-        <hr />
-        <div className="cocktails-grid">
-          {
-            cocktails
-          }
-        </div>
-        {/* <BrowserRouter>
-          <Switch>
-            <Route path={`/:cocktailId`} component={BasicCocktail} />
-          </Switch>
-        </BrowserRouter> */}
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <h1>{props.name}</h1>
+      <hr />
+      <div className="cocktails-grid">
+        {
+          htmlCocktails
+        }
+      </div>
+    </Fragment>
+  );
 }
 
 export default withRouter(CocktailList);
