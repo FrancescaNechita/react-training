@@ -47,7 +47,7 @@ export function AppHeader(props) {
 
   return <Fragment>
     <header className="app-header">
-      <Link to="/">
+      <Link className="header-anchor" to="/">
         <img src={logo} className="app-logo" alt="logo" />
         <label className="app-title">Cocktails</label>
       </Link>

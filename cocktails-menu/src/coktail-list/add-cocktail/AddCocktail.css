@@ -1,0 +1,36 @@
+.cocktail-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 50px 100px;
+  padding: 50px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 22px rgba(0, 0, 0, 0.07);
+}
+
+.cocktail-details .detail{
+  font-weight: 700;
+}
+
+.cocktail-details img{
+  margin-top: 20px;
+  height: 400px;
+}
+
+.input-section div{
+  margin: 15px 0;
+}
+
+.error-message{
+  font-size: 12px;
+  color: crimson;
+}
+
+.form-input{
+  display: block;
+  width: 250px;
+  margin-top: 5px;
+}
+
+
