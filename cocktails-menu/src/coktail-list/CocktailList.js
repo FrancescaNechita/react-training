@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { BasicCocktailItem } from './basic-coktail-item/BasicCoktailItem';
+import '../assets/Buttons.css';
 import './CocktailList.css';
 
 function CocktailList(props) {
@@ -23,6 +24,12 @@ function CocktailList(props) {
     <Fragment>
       <h1>{props.name}</h1>
       <hr />
+      <button className="circle-button new-cocktail">
+          <Link to={`/${props.routePath}/add-cocktail`}>
+            Add
+          </Link>
+      </button>
+
       <div className="cocktails-grid">
         {
           htmlCocktails

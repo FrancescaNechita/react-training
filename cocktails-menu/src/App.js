@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import AppHeader from './app-header/AppHeader';
+import AddCocktail from './coktail-list/add-cocktail/AddCocktail';
 import BasicCocktail from './coktail-list/basic-cocktail/BasicCoktail';
 import CocktailList from './coktail-list/CocktailList';
 
@@ -33,6 +34,10 @@ export const App = () => {
     return <Route path={`/${routeNames[index]}/:cocktailId`} component={BasicCocktail} />
   });
 
+  const cocktailAddRoutes = cocktailCategories.map((category, index) => {
+    return <Route path={`/${routeNames[index]}/add-cocktail`} component={AddCocktail} />
+  });
+
   return (
     <div className="app">
       <BrowserRouter>
@@ -42,6 +47,9 @@ export const App = () => {
           <input id="search-input" className="basic-input" placeholder="Search" />
         </div>
         <Switch>
+          {
+            cocktailAddRoutes
+          }
           {
             cocktailListItemsRoutes
           }

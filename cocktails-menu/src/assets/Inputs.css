@@ -2,18 +2,40 @@
   width: 80%;
   height: 40px;
   -webkit-appearance: none;
-  background-color: #E9E9E9;
-  border: 1px solid #E0DEDE;
+  background-color: #e9e9e9;
+  border: 1px solid #e0dede;
   border-radius: 6px;
   padding-left: 20px;
   outline: none;
 }
 
 .basic-input:focus {
-  border-color: #0093D2;
-  background-color: #C5EEFF;
+  border-color: #0093d2;
+  background-color: #c5eeff;
 }
 
 .basic-input::-ms-clear {
   display: none;
+}
+
+.form-input {
+  width: 80%;
+  height: 30px;
+  border-radius: 4px;
+  background-color: white;
+  -webkit-appearance: none;
+  border: 1px solid lightgrey;
+  padding-left: 17px;
+  color: gray;
+}
+
+.simple-input:focus {
+  outline: none;
+  border-color: #0093d2;
+  background-color: #c5eeff;
+}
+
+.simple-input:disabled {
+  color: gray;
+  cursor: default;
 }
