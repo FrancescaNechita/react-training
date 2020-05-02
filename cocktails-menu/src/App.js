@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import AppHeader from './app-header/AppHeader';
-import { BasicCocktail } from './coktail-list/basic-cocktail/BasicCoktail';
+import BasicCocktail from './coktail-list/basic-cocktail/BasicCoktail';
 import CocktailList from './coktail-list/CocktailList';
 
 import './assets/Inputs.css'
